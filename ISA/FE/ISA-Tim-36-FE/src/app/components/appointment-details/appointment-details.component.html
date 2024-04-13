@@ -1,0 +1,135 @@
+<div>
+  <h4>Appointment</h4>
+  <form>
+    <div class="form-group">
+      <label for="name">User</label>
+      <input style="width: 390px;" type="text" class="form-control" id="user" name="user" [(ngModel)]="nameAndSurnameUser" disabled />
+    </div>
+
+    <div class="form-group">
+      <label for="name">Medical worker</label>
+      <input style="width: 390px;" type="text" class="form-control" id="medical-worker" name="medical-worker" [(ngModel)]="nameAndSurnameMedicalWorker" disabled />
+    </div>
+
+    <div class="form-group">
+
+      <label for="name">Date and time</label>
+      <input style="width: 390px;" type="datetime-local" class="form-control" id="date-and-time" name="date-and-time" value="{{dateAndTime | date:'yyyy-MM-ddTHH:mm'}}" disabled/>
+    </div>
+
+    <div class="form-group" *ngIf="isMedicalAdmin()">
+      <label for="name">Did not show</label>
+      <input type="checkbox" class="form-check" id="did-not-show" name="did-not-show"  [(ngModel)]="didNotShow" [disabled]="!nameAndSurnameUser" />
+
+    </div>
+
+    <div class="form-group" *ngIf="isMedicalAdmin()">
+      <label for="name">Conditions not met</label>
+      <input type="checkbox" class="form-check" id="conditions-failed" name="conditions-failed" [(ngModel)]="conditionsNotFulfilled" [disabled]="!nameAndSurnameUser" />
+
+    </div>
+
+
+    <div class="form-group" *ngIf="isMedicalAdmin()">
+      <button class="btn btn-success" (click)="startAppointement()" [disabled]="appointmentStarted || !nameAndSurnameUser">Start
+        appointment</button>
+    </div>
+
+    <div class="form-group" *ngIf="isMedicalAdmin() === false && !nameAndSurnameUser">
+      <button class="btn btn-success" (click)="registerForAppointment()" [disabled]="appointmentStarted">Register for appointment</button>
+    </div>
+
+  </form>
+
+  <div *ngIf="appointmentStarted && !didNotShow && !conditionsNotFulfilled">
+    <form>
+
+      <hr />
+
+      <h1>Equipment management</h1>
+      <section>
+
+      <div class="form-group" style="float:left;margin-right:250px;">
+        <label class="poravnaj">Equipment</label>
+        <select class="form-control" [(ngModel)]="selectedEquipment" name="equipment" style="width: 400px;">
+          <option *ngFor="let eq of equipment" [ngValue]="eq">{{eq.name}}</option>
+        </select>
+      </div>
+      
+      <div class="form-group" style="float:left;">
+        <label class="poravnaj">Quantity</label>
+        <input type="number" class="form-control" name="equipmentQuantity" [(ngModel)]="selectedQuantity" style="width: 400px;">
+      </div>
+      
+      <div class="form-group">
+        <button style="margin-top: 15px;" class="btn btn-primary" (click)="markEquipmentAsUsed()">Save and proceed to the next</button>
+      </div>
+
+        <br>
+      <div *ngFor="let eq of selectedEquipments" class="mt-2">
+        {{eq.name}}  ={{eq.selectedQuantity}} pcs.
+      </div>
+
+    </section>
+    </form>
+
+    <br>
+    <br>
+      <!--****************************-->
+      <form>
+        <hr />
+
+      <h1>BloodTypes management</h1>
+      <section>
+
+      <div class="form-group" style="float:left;margin-right:250px;">
+        <label class="poravnaj">BloodTypes</label>
+        <select class="form-control" [(ngModel)]="selectedBloodType" name="bloodTypes" style="width: 400px;">
+          <option *ngFor="let bt of bloodTypes" [ngValue]="bt">{{bt.name}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="poravnaj">Quantity</label>
+        <input type="number" class="form-control" name="bloodTypesQuantity" [(ngModel)]="selectedQuantity2" style="width: 400px;">
+      </div>
+
+      <div class="form-group">
+        <button style="margin-top: 15px;" class="btn btn-primary" (click)="markBloodTypesAsUsed()">Save and proceed to the next</button>
+      </div>
+
+      <br>
+      <div *ngFor="let bt of selectedBloodTypes" class="mt-2">
+       [ {{bt.name}} ] = {{bt.selectedQuantity}} pcs.
+      </div>
+
+    </section>
+    </form>
+       <!--****************************-->
+  </div>
+
+
+  <div *ngIf="appointmentStarted || didNotShow || conditionsNotFulfilled">
+    <form>
+
+      <hr />
+
+      <h1>Report details</h1>
+
+      <div class="form-group">
+        <label>Appointment info</label>
+        <textarea class="form-control" name="appointment-info" rows="3" [(ngModel)]="details"></textarea>
+      </div>
+
+      <div class="form-group">
+        <button class="btn btn-success" (click)="saveReport()">Save report</button>
+      </div>
+    </form>
+  </div>
+
+
+  <br />
+  <br />
+  <br />
+
+</div>

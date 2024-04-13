@@ -1,0 +1,112 @@
+<h2>Add Center's Admin</h2>
+
+<div>
+    <div class="submit-form">
+      <div *ngIf="!submitted">
+        <div class="form-group">
+          <label for="title">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            required
+            [(ngModel)]="user.name"
+            name="title"
+          />
+        </div>
+  
+        <div class="form-group">
+          <label for="description">Surname</label>
+          <input
+            class="form-control"
+            id="description"
+            required
+            [(ngModel)]="user.surname"
+            name="description"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            class="form-control"
+            id="email"
+            required
+            [(ngModel)]="user.email"
+            name="email"
+          />
+        </div>
+
+
+        <div class="form-group">
+            <label for="email">Role</label>
+            <input
+              class="form-control"
+              id="email"
+              required
+              [(ngModel)]="user.role"
+              name="email"
+              disabled=""
+            />
+          </div>
+
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              required
+              [(ngModel)]="user.password"
+              name="password"
+            />
+          </div>
+
+
+          <div class="form-group">
+            <label for="password">Confirm Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password2"
+              required
+              name="password2"
+            />
+          </div>
+
+
+
+
+
+          <script>
+            document.querySelector([ngClass]="btn btn-success").onclick = function(){
+                 var password = document.querySelector('.password').value,
+                 confirmPassword = document.querySelector('.password2').value
+        
+                 if(password=""){
+                    alert("Fields can't be empty");
+                 }
+                 else if(password != confirmPassword){
+                    alert("Passwords don't match!");
+        
+                 }
+        
+            }
+          </script>
+  
+
+
+
+
+        <button (click)="saveUser()" class="btn btn-success">Submit</button>
+      </div>
+  
+      <div *ngIf="submitted">
+        <h4>User was submitted successfully!</h4>
+        <button class="btn btn-success" (click)="newUser()">Add</button>
+      </div>
+    </div>
+  </div>
+
+  

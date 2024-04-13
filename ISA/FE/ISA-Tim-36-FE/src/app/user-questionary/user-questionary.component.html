@@ -1,0 +1,39 @@
+<h2>Questinnary</h2>
+<div>
+    <div class="submit-form">
+          
+        <table class = "table table-striped">
+            <thead>
+                <tr>
+                    <th> No.</th>
+                    <th> Question </th>
+                    <th> Answer</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor = "let questinnare of questinnare" >
+                    <td> {{ questinnare.id }} </td>
+                    <td> {{ questinnare.question }} </td>
+                    <td>
+                           
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="{{questinnare.id}}" id="opt{{questinnare.id}}" value="true">
+                            <label class="form-check-label" for="inlineRadio1">YES</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="{{questinnare.id}}" id="opt{{questinnare.id}}" value="false">
+                            <label class="form-check-label" for="inlineRadio2">NO</label>
+                          </div>
+                    
+                    </td>
+
+
+
+                </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-success">Submit</button>
+    </div>
+
+    
+  

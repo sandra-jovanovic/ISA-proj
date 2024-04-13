@@ -1,0 +1,136 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/openlayers/4.6.5/ol.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/openlayers/4.6.5/ol.js"></script>
+  
+ 
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@main/dist/en/v6.14.1/css/ol.css" type="text/css">
+<script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@main/dist/en/v6.14.1/build/ol.js"></script>
+
+
+<div class="col-md-8">
+  <div class="input-group mb-3">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search by Name"
+      [(ngModel)]="name"
+    />
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search by StreetName"
+      [(ngModel)]="streetName"
+    />
+    <div class="input-group-append">
+      <button
+        class="btn btn-outline-secondary"
+        type="button"
+        (click)="filterByNameAndSurname()"
+      >
+        Search
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-8">
+  <div class="input-group mb-3">
+    <input
+      type="time"
+      class="form-control"
+      placeholder="Search by Time"
+      [(ngModel)]="formTime"
+    />
+    <input
+      type="date"
+      class="form-control"
+      placeholder="Search by Date"
+      [(ngModel)]="formDate"
+    />
+    <div class="input-group-append">
+      <button
+        class="btn btn-outline-secondary"
+        type="button"
+        (click)="retrieveCentresByTime()"
+      >
+        Search
+      </button>
+    </div>
+  </div>
+</div>
+
+<!---
+<div>
+  <a href="http://localhost:4200/centres/add">
+    <button type="submit" class="badge badge-success mb-2">
+      Add Center
+    </button>
+  </a>
+</div>
+-->
+
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="centres" matSort >
+
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="streetName">
+    <th mat-header-cell *matHeaderCellDef  mat-sort-header> Street Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.streetName}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="description"  >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="averageRate"  >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Average rate </th>
+    <td mat-cell *matCellDef="let element"> {{element.averageRate}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Edit"  >
+    <th mat-header-cell *matHeaderCellDef > Edit </th>
+    <td mat-cell *matCellDef="let element">
+      <button>
+      <a
+      class="badge badge-warning"
+      routerLink="/centres/{{ element.id }}">
+      Edit
+    </a> </button></td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+</div>
+
+
+<header>
+  <div class="title">Map Viewer - Openlayers & Angular</div>
+</header>
+
+<main>
+  <div class="left-bar"></div>
+  <div id="ol-map" class="map-container"></div>
+    <div id="popup" class="ol-popup">
+      <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+      <div id="popup-content"></div>
+    </div>
+</main>

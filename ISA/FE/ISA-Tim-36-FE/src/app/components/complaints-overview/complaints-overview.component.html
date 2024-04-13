@@ -1,0 +1,29 @@
+<h2 class="text-center mt-2">Complaints</h2>
+<div>
+    <table class = "table table-striped">
+        <thead>
+            <tr>
+                <th> #</th>
+                <th> User who wrote complaint</th>
+                <th> Medical worker</th>
+                <th> Description </th>
+                <th> Answer</th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor = "let complaint of complaints" >
+                <td> {{ complaint.id }} </td>
+                <td> {{ complaint.userFirstName }}  {{ complaint.userLastName }} </td>
+                <td> {{ complaint.medicalWorkerFirstName }}  {{ complaint.medicalWorkerLastName }} </td>
+                <td> {{ complaint.description }}  </td>
+                <td>
+                    <textarea [(ngModel)]="complaint.answer"></textarea>
+                </td>
+                <td>
+                    <button class="btn btn-primary" (click)="saveAnswer(complaint.id)">Save answer</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

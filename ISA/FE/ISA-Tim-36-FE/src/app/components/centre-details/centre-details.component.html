@@ -1,0 +1,174 @@
+<div *ngIf="viewMode; else editable">
+  <div *ngIf="currentCentre.id">
+    <h4>Centre</h4>
+    <div>
+      <label><strong>Name:</strong></label> {{ currentCentre.name }}
+    </div>
+    <div>
+      <label><strong>Street Name:</strong></label>
+      {{ currentCentre.streetName }}
+    </div>
+    <div>
+      <label><strong>Adress number:</strong></label>
+      {{ currentCentre.streetNumber }}
+    </div>
+    <div>
+      <label><strong>Description:</strong></label>
+      {{ currentCentre.description }}
+    </div>
+    <div>
+      <label><strong>Average rate:</strong></label>
+      {{ currentCentre.averageRate }}
+    </div>
+
+  <!----
+    <div>
+      <label><strong>Admin:</strong></label>
+      {{ currentCentre.administrator }}  OVE BAJNUD ADMINA
+    </div>
+  ---->
+    <a
+      class="badge badge-warning"
+      routerLink="/centres/{{ currentCentre.id }}"
+    >
+      Edit
+    </a>
+  </div>
+
+  <div *ngIf="!currentCentre">
+    <br />
+    <p>Please click on a centre...</p>
+  </div>
+</div>
+
+<hr />
+
+<h1 class="mt-5">Pregled zakazanih pregleda</h1>
+<app-centre-calendar [appointments$]="appointments$"></app-centre-calendar>
+
+<ng-template #editable>
+  <div *ngIf="currentCentre.id" class="edit-form">
+    <h4>Centre</h4>
+    <form>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          [(ngModel)]="currentCentre.name"
+          name="name"
+
+        />
+      </div>
+      <div class="form-group">
+        <label for="surname">Street Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="surname"
+          [(ngModel)]="currentCentre.streetName"
+          name="surname"
+
+        />
+      </div>
+      <div class="form-group">
+        <label for="email">Street number</label>
+        <input
+          type="text"
+          class="form-control"
+          id="email"
+          [(ngModel)]="currentCentre.streetNumber"
+          name="email"
+
+
+        />
+      </div>
+      <div class="form-group">
+        <label for="email">Description</label>
+        <input
+          type="text"
+          class="form-control"
+          id="email"
+          [(ngModel)]="currentCentre.description"
+          name="email"
+
+        />
+      </div>
+      <div class="form-group">
+        <label for="points">Average rate</label>
+        <input
+          type="number"
+          class="form-control"
+          id="points"
+          [(ngModel)]="currentCentre.averageRate"
+          name="points"
+
+        />
+      </div>
+
+      <!--
+      <div class="form-group">
+        <label for="admin">Administrator</label>
+        <select class="form-control" id="admin" name="admin" [(ngModel)]="currentCentre.administrator">
+          <option *ngFor="let admin of centreAdmins" value="{{admin.id}}">{{admin.name}} {{admin.surname}}</option>
+        </select>
+      </div>
+        --->
+
+
+    </form>
+
+
+    <!-- <button class="badge badge-danger mr-2" (click)="deleteCentre()">
+      Delete
+    </button> -->
+
+    <button
+      type="submit"
+      class="badge badge-success mb-2"
+      (click)="updateCentre()"
+    >
+      Update
+    </button>
+    <p>{{ message }}</p>
+  </div>
+
+
+
+  <div *ngIf="!currentCentre.id">
+    <br />
+    <p>Cannot access this centre...</p>
+  </div>
+
+</ng-template>
+
+<div class="mt-5 pb-5" *ngIf="isMedicalAdmin()">
+
+  <form [formGroup]="newAppointmentForm" (ngSubmit)="onAppointmentAddFormSubmit()">
+    <h2 class="text-center">Add new appointment</h2>
+    <div class="form-group">
+      <label for="formGroupExampleInput">Date and time</label>
+      <input type="datetime-local" class="form-control" id="formGroupExampleInput" formControlName="dateAndTime" required>
+    </div>
+    <div class="form-group">
+      <label for="formGroupExampleInput2">Duration (minutes)</label>
+      <input type="number" class="form-control" id="formGroupExampleInput2" formControlName="duration" required>
+    </div>
+
+    <div class="form-group">
+      <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Medical worker</label>
+      <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" formControlName="medicalWorker" required>
+        <option selected></option>
+        <option *ngFor="let worker of medicalWorkers" [value]="worker.id">{{worker.name}} {{worker.surname}}</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!newAppointmentForm.valid">
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="false"></span>
+      Save appointment
+    </button>
+  </form>
+
+</div>
+

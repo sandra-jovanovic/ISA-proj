@@ -1,0 +1,183 @@
+<div>
+    <div class="submit-form">
+      <div *ngIf="!submitted">
+        <div class="form-group">
+          <label for="title">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            required
+            [(ngModel)]="user.name"
+            name="title"
+          />
+        </div>
+  
+        <div class="form-group">
+          <label for="description">Surname</label>
+          <input
+            type="text"
+            class="form-control"
+            id="description"
+            required
+            [(ngModel)]="user.surname"
+            name="description"
+          />
+        </div>
+        <div class="form-group">
+        <div>
+          <input id="male" type="radio" class="custom-control-input" value="MALE" name="gender" [(ngModel)]="user.gender" required>
+          <label class="custom-control-label" for="male">Male</label>
+       </div>
+       <div>
+          <input id="female" type="radio" class="custom-control-input" value="FEMALE" name="gender" [(ngModel)]="user.gender" required>
+          <label class="custom-control-label" for="female">Female</label>
+       </div>
+       </div>
+      
+        <div class="form-group">
+          <label for="phoneNumber">Phone number</label>
+          <input
+            type="text"
+            class="form-control"
+            id="phoneNumber"
+            required
+            [(ngModel)]="user.phoneNumber"
+            name="phoneNumber"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="jmbg">Jmbg</label>
+          <input
+            type="text"
+            class="form-control"
+            id="jmbg"
+            required
+            [(ngModel)]="user.jmbg"
+            name="jmbg"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="job">Job</label>
+          <input
+            type="text"
+            class="form-control"
+            id="job"
+            required
+            [(ngModel)]="user.job"
+            name="job"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="companyName">Company name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="companyName"
+            required
+            [(ngModel)]="user.companyName"
+            name="companyName"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            required
+            class="form-control"
+            id="username"
+            required
+            [(ngModel)]="user.username"
+            name="username"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            required
+            class="form-control"
+            id="password"
+            required
+            [(ngModel)]="user.password"
+            name="password"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            required
+            class="form-control"
+            id="email"
+            required
+            [(ngModel)]="user.email"
+            name="email"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="street">Street</label>
+          <input
+            type="text"
+            class="form-control"
+            id="street"
+            required
+            [(ngModel)]="user.street"
+            name="street"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="number">Number</label>
+          <input
+            type="text"  
+            class="form-control"
+            id="number"
+            required
+            [(ngModel)]="user.number"
+            name="number"
+          />
+        </div>
+        
+        <div class="form-group">
+          <label for="city">City</label>
+          <input
+            type="text"  
+            class="form-control"
+            id="city"
+            required
+            [(ngModel)]="user.city"
+            name="city"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="country">Country</label>
+          <input
+            type="text"  
+            class="form-control"
+            id="country"
+            required
+            [(ngModel)]="user.country"
+            name="country"
+          />
+        </div>
+
+
+  
+        <button (click)="saveUser()" class="btn btn-success">Submit</button>
+      </div>
+  
+      <div *ngIf="submitted">
+        <h4>User was submitted successfully!</h4>
+        <button class="btn btn-success" (click)="newUser()">Register</button>
+      </div>
+    </div>
+  </div>

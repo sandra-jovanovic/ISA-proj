@@ -1,0 +1,115 @@
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 30px auto;
+font-size: 13px;
+border-radius: 30px 0px 30px 0px;
+overflow: hidden;
+box-shadow:  0px 0px 40px #000000;
+font-family: "Trebuchet MS",sans-serif;
+}
+
+
+.mat-form-field {
+  font-size: 20px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+  padding: 13px 16px;
+}
+
+.table img{
+  width: 15px;
+}
+
+.mat-header-cell{
+ /* background-color:#1C2951;*/
+ background-color: #301934;
+ color: #FFFFFF;
+  text-align: left;
+}
+
+.mat-row:nth-child(even):hover{
+  background-color: #ffff99;
+  color:#6f0000;
+  font-weight: bold;
+
+}
+.mat-row:nth-child(odd):hover{
+ background-color:#ffff99;
+ color: #6f0000;
+ font-weight: bold;
+}
+
+.mat-cell{
+  border-bottom: 1px solid #1C2951;
+  padding: 18px;
+}
+
+
+:host {
+  width: 100vh;
+  margin-left: 20%;
+  margin-top: 30%;
+height: 30vh;
+}
+
+
+
+main {
+display: flex;
+  flex-grow: 1;
+  width: 100%;
+  height: 45vh;
+}
+
+.map-container {
+flex-grow: 1;
+}
+
+
+
+.pomeri{
+height: 1200px;
+width: 1300px;
+}
+
+
+.ol-popup {
+  position: absolute;
+  background-color: white;
+  /*--webkit-filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));*/
+  filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #cccccc;
+  bottom: 12px;
+  left: -50px;
+  min-width: 180px;
+}
+
+.ol-popup:after, .ol-popup:before {
+  top: 100%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.ol-popup:after {
+  border-top-color: white;
+  border-width: 10px;
+  left: 48px;
+  margin-left: -10px;
+}
+
+.ol-popup:before {
+  border-top-color: #cccccc;
+  border-width: 11px;
+  left: 48px;
+  margin-left: -11px;
+}

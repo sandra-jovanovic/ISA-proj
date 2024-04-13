@@ -1,0 +1,316 @@
+
+ <!--NA DOLE JE PIKULIN EDIT OBICNOG KORISNIKA, NE DIRATI!!!!-->
+
+<div *ngIf="currentUser.role == 'KORISNIK'">
+  <form>
+
+    <label><strong>REGULAR USER PROFILE EDIT</strong></label>
+
+    <div class="form-group"> <!--#NAME-->
+      <label for="name">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        [(ngModel)]="currentUser.name"
+        name="name"
+      />
+    </div>
+
+    <div class="form-group"> <!--#SURNAME-->
+      <label for="surname">Surname</label>
+      <input
+        type="text"
+        class="form-control"
+        id="surname"
+        [(ngModel)]="currentUser.surname"
+        name="surname"/>
+    </div>
+  
+    <div class="form-group"> <!--#GENDER-->
+      <div>
+        <input id="male" type="radio" class="custom-control-input" value="MALE" name="gender" [(ngModel)]="currentUser.gender" required>
+        <label class="custom-control-label" for="male">Male</label>
+      </div>
+      <div>
+        <input id="female" type="radio" class="custom-control-input" value="FEMALE" name="gender" [(ngModel)]="currentUser.gender" required>
+        <label class="custom-control-label" for="female">Female</label>
+      </div>
+      <div>
+        <input id="other" type="radio" class="custom-control-input" value="OTHER" name="gender" [(ngModel)]="currentUser.gender" required>
+        <label class="custom-control-label" for="other">Other</label>
+      </div>
+    </div>
+
+    <div class="form-group"> <!--#PHONE NUMBER-->
+      <label for="phoneNumber">Phone number</label>
+      <input
+        type="text"
+        class="form-control"
+        id="phoneNumber"
+        [(ngModel)]="currentUser.phoneNumber"
+        name="phoneNumber"/>
+    </div>
+
+    <div class="form-group"> <!--#JOB-->
+      <label for="job">Job</label>
+      <input
+        type="text"
+        class="form-control"
+        id="job"
+        [(ngModel)]="currentUser.job"
+        name="job"
+        />
+    </div>
+
+    <div class="form-group"> <!--COMPANY NAME-->
+      <label for="companyName">Company name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="companyName"
+        [(ngModel)]="currentUser.companyName"
+        name="companyName"
+        />
+    </div>
+
+    <div class="form-group"> <!--#USERNAME-->
+      <label for="username">Username</label>
+      <input
+        type="text"
+        class="form-control"
+        id="username"
+        [(ngModel)]="currentUser.username"
+        name="username"
+        />
+    </div>
+
+    <div class="form-group"> <!--#PASSWORD-->
+      <label for="password">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        [(ngModel)]="currentUser.password"
+        name="password"
+        />
+    </div>
+
+    <div class="form-group"> <!--#CONFIRM NEW PASSWORD-->
+      <label for="confirmPassword">Confirm new password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="confirmPassword"
+        [(ngModel)]="confirmPassword"
+        name="confirmPassword"
+        />
+    </div>
+
+    <div class="form-group"> <!--STREET-->
+      <label for="street">Street</label>
+      <input
+        type="text"
+        class="form-control"
+        id="street"
+        [(ngModel)]="currentUser.street"
+        name="street"
+        />
+    </div>
+
+    <div class="form-group"> <!--NUMBER-->
+      <label for="number">Number</label>
+      <input
+        type="text"
+        class="form-control"
+        id="number"
+        [(ngModel)]="currentUser.number"
+        name="number"
+        />
+    </div>
+
+    <div class="form-group"> <!--CITY-->
+      <label for="city">City</label>
+      <input
+        type="text"
+        class="form-control"
+        id="city"
+        [(ngModel)]="currentUser.city"
+        name="city"
+        />
+    </div>
+
+    <div class="form-group"> <!--COUNTRY-->
+      <label for="country">Country</label>
+      <input
+        type="text"
+        class="form-control"
+        id="country"
+        [(ngModel)]="currentUser.country"
+        name="country"
+        />
+    </div>
+
+    <div class="form-group"><!--EMAIL-->
+      <label for="email">Email</label>
+      <input
+        type="text"
+        class="form-control"
+        id="email"
+        [(ngModel)]="currentUser.email"
+        name="email"
+        disabled/>
+    </div>
+
+    <div class="form-group"><!--POINTS-->
+      <label for="points">Points</label>
+      <input
+        type="text"
+        class="form-control"
+        id="points"
+        [(ngModel)]="currentUser.points"
+        name="points"
+        disabled/>
+    </div>
+
+  </form>
+
+  <button
+    type="submit"
+    class="badge badge-success mb-2"
+    (click)="updateUser()">
+    Update
+  </button> <!--UPDATE BUTTON-->
+
+  <p>{{ message }}</p>
+
+</div>
+
+ <!--NA GORE JE PIKULIN EDIT OBICNOG KORISNIKA, NE DIRATI!!!!-->
+
+
+
+<div *ngIf="currentUser.role != 'KORISNIK'">
+<div *ngIf="viewMode; else editable">
+    <div *ngIf="currentUser.id">
+      <h4>User</h4>
+      <div>
+        <label><strong>Name:</strong></label> {{ currentUser.name }}
+      </div>
+      <div>
+        <label><strong>Surname:</strong></label>
+        {{ currentUser.surname }}
+      </div>
+      <div>
+        <label><strong>Email:</strong></label>
+        {{ currentUser.email }}
+      </div>
+      <div>
+        <label><strong>Points:</strong></label>
+        {{ currentUser.points }}
+      </div>
+
+      <div>
+        <label><strong>Password:</strong></label>
+        {{ currentUser.password }}
+      </div>
+
+
+      <div>
+        <label><strong>Role:</strong></label>
+        {{ currentUser.role }}
+      </div>
+
+  
+      <a
+        class="badge badge-warning"
+        routerLink="/users/{{ currentUser.id }}"
+      >
+        Edit
+      </a>
+    </div>
+  
+    <div *ngIf="!currentUser">
+      <br />
+      <p>Please click on a user...</p>
+    </div>
+  </div>
+  
+  <ng-template #editable>
+    <div *ngIf="currentUser.id" class="edit-form">
+      <h4>User</h4>
+      <form>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            [(ngModel)]="currentUser.name"
+            name="name"
+          />
+        </div>
+        <div class="form-group">
+          <label for="surname">Surname</label>
+          <input
+            type="text"
+            class="form-control"
+            id="surname"
+            [(ngModel)]="currentUser.surname"
+            name="surname"/>
+        </div>
+        <div class="form-group">
+          <label for="surname">Surname</label>
+          <input
+            type="text"
+            class="form-control"
+            id="surname"
+            [(ngModel)]="currentUser.surname"
+            name="surname"/>
+        </div>
+        <div class="form-group">
+          <label for="surname">Surname</label>
+          <input
+            type="text"
+            class="form-control"
+            id="surname"
+            [(ngModel)]="currentUser.surname"
+            name="surname"/>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="text"
+            class="form-control"
+            id="email"
+            [(ngModel)]="currentUser.email"
+            name="email"
+            disabled/>
+        </div>
+        <div class="form-group">
+          <label for="points">Points</label>
+          <input
+            type="text"
+            class="form-control"
+            id="points"
+            [(ngModel)]="currentUser.points"
+            name="points"
+            disabled/>
+        </div>
+      </form>
+  
+      <button
+        type="submit"
+        class="badge badge-success mb-2"
+        (click)="updateUser()">
+        Update
+      </button>
+      <p>{{ message }}</p>
+    </div>
+  
+    <div *ngIf="!currentUser.id">
+      <br />
+      <p>Cannot access this user...</p>
+    </div>
+  </ng-template>
+</div>

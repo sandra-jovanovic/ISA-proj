@@ -1,0 +1,63 @@
+<h1 class="text-center mb-5">Create new centre</h1>
+
+<form>
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" name="name" [(ngModel)]="name" />
+  </div>
+  <div class="form-group">
+    <label for="street">Street</label>
+    <input type="text" class="form-control" id="street" name="street" [(ngModel)]="street" />
+  </div>
+  <div class="form-group">
+    <label for="number">Address number</label>
+    <input type="text" class="form-control" id="number" placeholder="e.g. 22/a" name="number" [(ngModel)]="number" />
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea class="form-control" id="description" rows="3" name="description" [(ngModel)]="description"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="averageRate">Average rate</label>
+    <input type="text" class="form-control" id="number" name="averageRate" [(ngModel)]="averageRate" />
+  </div>
+
+<!--
+  <div class="form-group">
+    <label for="reserveAppointment">Reserve Appointment</label>
+    <input type="string" class="form-control" id="number" name="reserveAppointment" [(ngModel)]="reserveAppointment" />
+  </div>
+-->
+  <div class="form-group">
+    <label for="admin">Administrator</label>
+    <select class="form-control" id="admin" name="admin" [(ngModel)]="administrator">
+      <option *ngFor="let admin of centreAdmins" value="{{admin.id}}">{{admin.name}} {{admin.surname}}</option>
+    </select>
+  
+ <!--   <div>
+    <a routerLink="/add"><img src="/assets/warning.png" alt="waring" width="40" height="40" class="mt-2" *ngIf="noAdmins"
+     title="Nijedan administrator centra nije dostupan. Napravite novog administratora klikom na znak upozorenja"  />
+    </a>
+  </div> -->
+
+    <a routerLink="/addcenteradmins"><img src="/assets/warning.png" alt="waring" width="40" height="40" class="mt-2" *ngIf="noAdmins"
+      title="Nijedan administrator centra nije dostupan. Napravite novog administratora klikom na znak upozorenja"  />
+     </a>
+  </div>
+  <button type="button" class="btn btn-primary" (click)="saveCentre()" [disabled]="noAdmins">Create centre</button>
+  <br>
+  <br>
+<div>
+    <a routerLink="/addcenteradmins">
+      <button type="submit" class="btn btn-primary">
+        Create Admin
+      </button>
+    </a>
+  </div>
+
+
+
+  <div class="bg-danger p-4 my-4 text-white" *ngIf="errorMessage">
+    {{errorMessage}}
+  </div>
+</form>

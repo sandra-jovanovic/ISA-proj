@@ -1,0 +1,24 @@
+<h2>Add Center's Admin</h2>
+
+<div>
+  <div class="submit-form">
+    <div>
+      <div class="form-group">
+        <label for="title">Username</label>
+        <input type="text" class="form-control" id="title" required [(ngModel)]="username" name="username" />
+      </div>
+
+      <div class="form-group">
+        <label for="description">Password</label>
+        <input type="password" class="form-control" id="description" required [(ngModel)]="password" name="password" />
+      </div>
+
+      <div class="form-group">
+        <button class="btn btn-primary" (click)="login()" [disabled]="!username || !password">Login</button>
+      </div>
+      <div class="text-danger" *ngIf="error">
+        {{error}}
+      </div>
+    </div>
+  </div>
+</div>

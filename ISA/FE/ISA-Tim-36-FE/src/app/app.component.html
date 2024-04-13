@@ -1,0 +1,35 @@
+<div>
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <a href="#" class="navbar-brand">TIM 36</a>
+    <div class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a routerLink="users" class="nav-link" *ngIf="isAdmin()">Users</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="profile" class="nav-link" *ngIf="isLogedIn()">Profile</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="centres/add" class="nav-link" *ngIf="isAdmin()">New centre</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="centres" class="nav-link">All Centre</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="questionnary" class="nav-link" *ngIf="isAdmin()===false && isMedicalAdmin()===false  && isLogedIn()">Questionnaire</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="complaints" class="nav-link" *ngIf="isAdmin()">Complaints overview</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="admin-add" class="nav-link" *ngIf="isAdmin()">Admin registration</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="adminHomePage" class="nav-link" *ngIf="isAdmin() || isMedicalAdmin()">Admin Homepage</a>
+      </li>
+    </div>
+  </nav>
+
+  <div class="container mt-3">
+    <router-outlet></router-outlet>
+  </div>
+</div>
